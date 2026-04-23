@@ -12,7 +12,7 @@ if not os.path.exists('models'):
 
 
 def main():
-    print("🚀 Khởi động hệ thống dự đoán...")
+    print("Khởi động hệ thống dự đoán...")
 
     # 1. Load data
     X, y = load_data()
@@ -37,7 +37,6 @@ def main():
     try:
         model_step = best_model.named_steps['model']  # lấy RandomForest
 
-        # ⚠️ Vì bạn đã chọn feature trước đó → dùng trực tiếp tên này
         feature_names = [
             'G1', 'G2',
             'failures',
@@ -55,7 +54,7 @@ def main():
     model_path = 'models/best_student_model.pkl'
     joblib.dump(best_model, model_path)
 
-    print(f"\n💾 Đã lưu model vào: {model_path}")
+    print(f"\nĐã lưu model vào: {model_path}")
     print("👉 Model đã bao gồm xử lý → dùng trực tiếp cho Flask")
 
 
