@@ -29,9 +29,21 @@ def plot_model_comparison(results_dict):
     plt.figure(figsize=(8, 5))
     names = list(results_dict.keys())
     values = list(results_dict.values())
+    # Tạo biểu đồ bar
+    ax = sns.barplot(x=names, y=values, palette='viridis')
 
-    sns.barplot(x=names, y=values, palette='viridis')
+    # --- PHẦN THÊM CON SỐ TRÊN ĐẦU CỘT ---
+    for p in ax.patches:
+        ax.annotate(f'{p.get_height()*100:.2f}%',
+                    (p.get_x() + p.get_width() / 2., p.get_height()),
+                    ha='center', va='center',
+                    fontsize=12, color='black',
+                    xytext=(0, 9),
+                    textcoords='offset points',
+                    fontweight='bold')
+
     plt.title('So sánh độ chính xác giữa các mô hình')
+    plt.ylabel('Độ chính xác (Accuracy)')
     plt.ylim(0, 1.0)
 
     # Lưu ảnh

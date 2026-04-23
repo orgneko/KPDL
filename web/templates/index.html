@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDENT SUCCESS PREDICTOR | AI-Powered Education</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== RESET & BASE STYLES (Giống Insurance Fraud) ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            /* Palette Sydexa/Insurance-inspired */
+            --primary: #7c3aed;         
+            --primary-light: #a78bfa;
+            --primary-dark: #5b21b6;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark: #0f172a;            
+            --dark-light: #1e293b;
+            --gray: #94a3b8;
+            --gray-light: #475569;
+            --white: #ffffff;
+            
+            /* Gradients */
+            --gradient-primary: linear-gradient(135deg, #7c3aed, #6366f1);
+            
+            /* Shadows & Transitions */
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: radial-gradient(circle at top, #0f172a, #020617);
+            color: #e2e8f0;
+            min-height: 100vh;
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* ===== CONTAINER & GLASS CARD ===== */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05); /* Hiệu ứng kính */
+            backdrop-filter: blur(16px); /* Blur nền giống Sydexa */
+            border: 1px solid rgba(255, 255, 255, 0.1); /* Viền kính nhẹ */
+            border-radius: 24px;
+            padding: 3rem;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: var(--shadow-xl), 0 0 30px rgba(99, 102, 241, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hiệu ứng Glow nền nhẹ */
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -100px; left: -100px;
+            width: 200px; height: 200px;
+            background: rgba(124, 58, 237, 0.2);
+            border-radius: 50%;
+            filter: blur(80px);
+            z-index: -1;
+        }
+
+        /* ===== HEADER STYLES (Giống Insurance Fraud) ===== */
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            justify-content: center;
+        }
+
+        .logo-icon { font-size: 3rem; filter: drop-shadow(0 0 10px var(--primary-light)); }
+
+        .logo-text h1 {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 0.25rem;
+            background: linear-gradient(90deg, #fff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .logo-text p { font-size: 0.875rem; color: var(--gray); font-weight: 500; }
+
+        /* ===== FORM STYLES ===== */
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            display: flex; align-items: center; gap: 0.75rem;
+        }
+
+        .group-title {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--gray-light);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px 16px;
+            background: rgba(0, 0, 0, 0.3); /* Nền tối giống Sydexa Input */
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 1rem;
+            font-family: inherit;
+            transition: var(--transition);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+        }
+
+        input:hover, select:hover { border-color: rgba(255, 255, 255, 0.2); }
+
+        /* ===== BUTTONS (Giống Insurance Fraud Primary) ===== */
+        .form-actions { margin-top: 2.5rem; text-align: center; }
+
+        .btn-primary {
+            background: var(--gradient-primary);
+            color: var(--white);
+            border: none;
+            padding: 1.125rem 3rem;
+            border-radius: 16px;
+            font-size: 1.125rem;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex; align-items: center; gap: 0.75rem;
+            transition: var(--transition);
+            box-shadow: 0 10px 20px -5px rgba(99, 102, 241, 0.5);
+            width: 100%; justify-content: center;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 30px -10px rgba(99, 102, 241, 0.6);
+        }
+
+        .btn-primary:active { transform: translateY(0); }
+
+        /* ===== RESULTS SECTION ===== */
+        .result-container {
+            margin-top: 2rem;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Dùng lại class safe/fraud của Sydexa */
+        .safe {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.2), rgba(2, 6, 23, 0.8));
+            border-color: rgba(16, 185, 129, 0.5);
+            color: var(--success);
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.2);
+        }
+
+        .fraud {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.2), rgba(2, 6, 23, 0.8));
+            border-color: rgba(239, 68, 68, 0.5);
+            color: var(--danger);
+            box-shadow: 0 0 30px rgba(239, 68, 68, 0.2);
+        }
+
+        .result-title { font-size: 1.5rem; font-weight: 800; margin-bottom: 0.5rem; }
+        .result-subtitle { font-size: 1rem; color: var(--gray); font-weight: 500; }
+        .confidence-bar {
+            width: 100%; height: 8px; background: rgba(255,255,255,0.1);
+            border-radius: 4px; margin-top: 15px; overflow: hidden;
+        }
+        .confidence-fill {
+            height: 100%; background: var(--gradient-primary);
+            border-radius: 4px; transition: width 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-card">
+        <div class="logo">
+            <div class="logo-icon">🎓</div>
+            <div class="logo-text">
+                <h1>SUCCESS PREDICTOR</h1>
+                <!-- <p>Powered by AI-Powered Student Analytics</p> -->
+            </div>
+        </div>
+
+        <form action="/predict" method="post">
+            <h3 class="section-title">Phân Tích Hành Vi Học Tập</h3>
+            
+            <div class="group-title">Yếu tố học thuật (G1, G2, Failures)</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Điểm kỳ trước (G2) [0-10]</label>
+                    <input type="number" name="G2" min="0" max="10" step="0.1" required placeholder="8.5">
+                </div>
+                <div class="form-group">
+                    <label>Điểm kỳ đầu (G1) [0-10]</label>
+                    <input type="number" name="G1" min="0" max="10" step="0.1" required placeholder="7.0 ">
+                </div>
+                <div class="form-group">
+                    <label>Số lần trượt môn trước đây</label>
+                    <input type="number" name="failures" min="0" max="4" required placeholder="0">
+                </div>
+                <div class="form-group">
+                    <label>Số buổi vắng mặt (absences)</label>
+                    <input type="number" name="absences" min="0" max="93" required placeholder="2">
+                </div>
+            </div>
+
+            <div class="group-title">Yếu tố hành vi & lối sống (Studytime, Goout)</div>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Thời gian tự học hàng tuần</label>
+                    <select name="studytime">
+                        <option value="1">&lt; 2 giờ</option>
+                        <option value="2">2 - 5 giờ</option>
+                        <option value="3">5 - 10 giờ</option>
+                        <option value="4">&gt; 10 giờ</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Mức độ đi chơi với bạn bè [1-5]</label>
+                    <input type="number" name="goout" min="1" max="5" required placeholder="3">
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn-primary">
+                    PHÂN TÍCH NGAY
+                </button>
+            </div>
+        </form>
+
+        {% if prediction %}
+        <div class="result-container {{ status }}">
+            <h3 class="result-title">Dự đoán của AI: {{ prediction }}</h3>
+            <p class="result-subtitle">Mô hình Random Forest đã phân tích</p>
+            <div class="confidence-bar">
+                <div class="confidence-fill" style="width: {{ confidence }}%"></div>
+            </div>
+            <p style="font-size: 0.8rem; margin-top: 5px; color: var(--gray-light)">Độ tin cậy: {{ confidence }}%</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
